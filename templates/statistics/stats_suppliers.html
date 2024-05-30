@@ -1,0 +1,35 @@
+<!-- Ваш шаблон statistics/stats_suppliers.html -->
+{% extends 'main/base.html' %}
+
+{% block content %}
+  <div class="container mt-3">
+    <h2>Статистика поставщиков</h2>
+    <p>Общее количество поставщиков: {{ total_suppliers }}</p>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">
+            <a href="?order_by=name&direction={{ order_directions.name }}">Поставщик</a>
+          </th>
+          <th scope="col">
+            <a href="?order_by=num_purchases&direction={{ order_directions.num_purchases }}">Количество закупок</a>
+          </th>
+          <th scope="col">
+            <a href="?order_by=total_amount&direction={{ order_directions.total_amount }}">Общая сумма</a>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for supplier in suppliers %}
+          <tr>
+            <td>{{ supplier.name }}</td>
+            <td>{{ supplier.num_purchases }}</td>
+            <td>{{ supplier.total_amount|default:"0.00" }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  <a href="{% url 'stats_list' %}" class="btn btn-primary">Вернуться к статистике</a>
+  </div>
+{% endblock %}

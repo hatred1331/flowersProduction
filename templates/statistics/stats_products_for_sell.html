@@ -1,0 +1,38 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+  <div class="container mt-3">
+    <h2>Статистика товаров для продажи</h2>
+    <p>Общее количество товаров: {{ total_products }}</p>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">
+            <a href="?order_by=productId__name&direction={{ order_directions.productId__name }}">Товар</a>
+          </th>
+          <th scope="col">
+            <a href="?order_by=num_orders&direction={{ order_directions.num_orders }}">Количество заказов</a>
+          </th>
+          <th scope="col">
+            <a href="?order_by=total_quantity&direction={{ order_directions.total_quantity }}">Общее количество</a>
+          </th>
+          <th scope="col">
+            <a href="?order_by=total_amount&direction={{ order_directions.total_amount }}">Общая сумма</a>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for product in products %}
+          <tr>
+            <td>{{ product.productId__name }}</td>
+            <td>{{ product.num_orders }}</td>
+            <td>{{ product.total_quantity|default:"0" }}</td>
+            <td>{{ product.total_amount|default:"0.00" }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  <a href="{% url 'stats_list' %}" class="btn btn-primary">Вернуться к статистике</a>
+  </div>
+{% endblock %}

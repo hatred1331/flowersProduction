@@ -1,0 +1,11 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+  <div class="container mt-3">
+    <h2>Статистика по деньгам</h2>
+    <p>Общая сумма полученная с продажи товаров: {{ cash_stats.total_sell_amount|default:"0.00" }}</p>
+    <p>Общая сумма потраченная на закупку товаров: {{ cash_stats.total_purchase_amount|default:"0.00" }}</p>
+    <p>Прибыль: {{ cash_stats.profit|default:"0.00" }}</p>
+  <a href="{% url 'stats_list' %}" class="btn btn-primary">Вернуться к статистике</a>
+  </div>
+{% endblock %}

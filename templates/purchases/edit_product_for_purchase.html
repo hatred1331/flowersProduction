@@ -1,0 +1,12 @@
+<!-- templates/orders/edit_product_for_sell.html -->
+{% extends 'main/base.html' %}
+
+{% block content %}
+  <h2>Изменить товар в закупке</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Сохранить изменения</button>
+  </form>
+  <a href="{% url 'purchases_detail' pk=product_id %}" class="btn btn-secondary mt-3">Назад к закупке</a>
+{% endblock %}

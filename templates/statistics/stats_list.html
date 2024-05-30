@@ -1,0 +1,28 @@
+<!-- your_template_name.html -->
+{% extends 'main/base.html' %}
+
+{% block content %}
+  <div class="container mt-3">
+    <h2>Статистика</h2>
+    <div class="row">
+      <div class="col-md-6">
+        <p>Общее количество клиентов: {{ total_clients }}</p>
+        <p>Общее количество поставщиков: {{ total_suppliers }}</p>
+        <p>Общее количество закупок: {{ total_purchases }}</p>
+      </div>
+      <div class="col-md-6">
+        <p>Общее количество заказов: {{ total_sells }}</p>
+        <p>Общее количество товаров: {{ total_products }}</p>
+      </div>
+    </div>
+
+    <!-- Добавьте ссылки для перехода на другие страницы -->
+    <div class="mt-3">
+      <a href="{% url 'stats_clients' %}" class="btn btn-primary">Список клиентов</a>
+      <a href="{% url 'stats_suppliers' %}" class="btn btn-primary">Список поставщиков</a>
+      <a href="{% url 'stats_cash' %}" class="btn btn-primary">Финансы</a>
+      <a href="{% url 'stats_products_for_purchase' %}" class="btn btn-primary">Список товаров для закупки</a>
+      <a href="{% url 'stats_products_for_sell' %}" class="btn btn-primary">Список товаров для продажи</a>
+    </div>
+  </div>
+{% endblock %}

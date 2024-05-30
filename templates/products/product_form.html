@@ -1,0 +1,74 @@
+{#<!-- templates/product_form.html -->#}
+{##}
+{#{% extends 'main/base.html' %}#}
+{##}
+{#{% block content %}#}
+{#  <h2>Создать/Изменить товар</h2>#}
+{#  <form method="post" action="">#}
+{#    {% csrf_token %}#}
+{#    {{ form.name.label_tag }} {{ form.name }}#}
+{#    {{ form.quantity.label_tag }} {{ form.quantity }}#}
+{#      {{ form.price.label_tag }} {{ form.price }}#}
+{#    {{ form.variety.label_tag }} {{ form.variety }}#}
+{#      {{ form.plant_type.label_tag }} {{ form.plant_type }}#}
+{##}
+{#    <button type="submit" class="btn btn-primary">Сохранить</button>#}
+{#  </form>#}
+{#    <a href="{% url 'product_list' %}" class="btn btn-secondary mt-3">Назад к списку товаров</a>#}
+{#{% endblock %}#}
+
+<!-- templates/product_form.html -->
+
+{% extends 'main/base.html' %}
+
+{% block content %}
+  <div class="container">
+    <h2 class="mt-4">Создать/Изменить товар</h2>
+    <form method="post" action="" class="mt-3">
+      {% csrf_token %}
+
+      <div class="form-group row">
+        <label for="{{ form.name.id_for_label }}" class="col-sm-2 col-form-label">{{ form.name.label }}</label>
+        <div class="col-sm-10">
+          {{ form.name }}
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="{{ form.quantity.id_for_label }}" class="col-sm-2 col-form-label">{{ form.quantity.label }}</label>
+        <div class="col-sm-10">
+          {{ form.quantity }}
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="{{ form.price.id_for_label }}" class="col-sm-2 col-form-label">{{ form.price.label }}</label>
+        <div class="col-sm-10">
+          {{ form.price }}
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="{{ form.variety.id_for_label }}" class="col-sm-2 col-form-label">{{ form.variety.label }}</label>
+        <div class="col-sm-6">
+          {{ form.variety }}
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="{{ form.plant_type.id_for_label }}" class="col-sm-2 col-form-label">{{ form.plant_type.label }}</label>
+        <div class="col-sm-10">
+          {{ form.plant_type }}
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-sm-10 offset-sm-2">
+          <button type="submit" class="btn btn-primary">Сохранить</button>
+        </div>
+      </div>
+
+    </form>
+    <a href="{% url 'product_list' %}" class="btn btn-secondary mt-3">Назад к списку товаров</a>
+  </div>
+{% endblock %}

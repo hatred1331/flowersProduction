@@ -1,0 +1,14 @@
+
+{#элемент для отрисовки списка товаров#}
+
+
+<a href="" class="card mb-3" style="max-width: 18rem; text-decoration: none; color: inherit;">
+    <div class="card-body d-flex flex-row">
+        <div class="flex-grow-1">
+            <h5 class="card-title">{{ product.name }}</h5>
+            <p class="card-text">Количество: {{ product.quantity }}</p>
+            <p class="card-text">Цена: {{ product.price }} руб.</p>
+            <p class="card-text">Вид продукта: {{ product.plant_type.type }}</p>
+        </div>
+    </div>
+</a>

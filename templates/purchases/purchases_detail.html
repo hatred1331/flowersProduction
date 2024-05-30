@@ -1,0 +1,72 @@
+<!-- templates/product_detail.html -->
+
+{% extends 'main/base.html' %}
+
+{% block content %}
+  <h2>Детали закупки</h2>
+  <p><strong>ФИО Поставщика:</strong> {{ purchase.suppliersId.name }}</p>
+    <p><strong>Организация:</strong> {{ purchase.suppliersId.organisation }}</p>
+  <p><strong>Общая сумма:</strong> {{ purchase.amount_price }}</p>
+  <p><strong>Дата:</strong> {{ purchase.date }}</p>
+  <p><strong>Дата обновления</strong> {{ purchase.updateDate }}</p>
+    <p><strong>Статус закупки</strong> {{ purchase.statusId.status }}</p>
+     <a href="{% url 'edit_purchase' pk=purchase.id %}" class="btn btn-warning btn-sm">Изменить данные закупки</a>
+    <!-- Кнопка для перехода на страницу клиента -->
+    <a href="{% url 'suppliers_detail' pk=purchase.suppliersId.pk %}" class="btn btn-info mt-3">Подробнее о поставщике</a>
+
+
+{#  <p><strong>Вид продукта:</strong> {{ product.plant_type.type }}</p>#}
+{#  <a href="{% url 'product_update' product.pk %}" class="btn btn-warning btn-sm">Изменить</a>#}
+{#  <a href="{% url 'product_delete' product.pk %}" class="btn btn-danger btn-sm">Удалить</a>#}
+
+   <h2>Товары:</h2>
+    {% if products %}
+      <form method="post" action="{% url 'toggle_reserve' pk=purchase.id %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-success">
+            {% if order.is_reserved %}
+            Отменить резерв
+            {% else %}
+            Зарезервировать
+            {% endif %}
+        </button>
+</form>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Наименование товара</th>
+                    <th scope="col">Тип</th>
+                    <th scope="col">Количество</th>
+                    <th scope="col">Цена</th>
+                    <th scope="col">Общая сумма</th>
+{#                    <th scope="col">Наличие</th>#}
+                    <th scope="col">Действия</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                    <tr>
+                        <td>{{ product.productId.name }}</td>
+                        <td>{{ product.productId.plant_type.type }}</td>
+                        <td>{{ product.quantity }}</td>
+                        <td>{{ product.price }}</td>
+                        <td>{{ product.amount_price }}</td>
+{#                        <td>#}
+{#                            {% if product.productId.quantity >= product.quantity %}#}
+{#                            В наличии#}
+{#                            {% else %}#}
+{#                            Недостаточно#}
+{#                            {% endif %}#}
+{#                        </td>#}
+                        <td><a href="{% url 'edit_product_for_purchase' pk=product.id %}" class="btn btn-primary">Изменить</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    {% else %}
+        <p>Товаров в закупке еще нет</p>
+    {% endif %}
+    <a href="{{ add_product_url }}" class="btn btn-primary mt-3">Добавить товар</a>
+    <a href="{% url 'purchases_list' %}" class="btn btn-secondary mt-3">Назад к списку закупок</a>
+{% endblock %}

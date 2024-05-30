@@ -1,0 +1,14 @@
+<!-- templates/product_form.html -->
+{% extends 'main/base.html' %}
+
+{% block content %}
+  <h2>Добавить товар</h2>
+  <form method="post">
+    {% csrf_token %}
+
+      {{ product_form.as_p }}
+
+    <button type="submit">Добавить товар</button>
+  </form>
+  <a href="{% url 'purchases_detail' pk=purchase_id %}" class="btn btn-secondary mt-3">Назад к закупке</a>
+{% endblock %}

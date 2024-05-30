@@ -1,0 +1,45 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+  <h2>Список заказов</h2>
+    <a href="{% url 'orders_create' %}" class="btn btn-success">Добавить заказ</a>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">
+            <a href="?order_by=clientsId__name">ФИО</a>
+        </th>
+        <th scope="col">
+            <a href="?order_by=amount_price">Общая сумма</a>
+        </th>
+        <th scope="col">
+            <a href="?order_by=date">Дата создания</a>
+        </th>
+        <th scope="col">
+            <a href="?order_by=updateDate">Дата обновления</a>
+        </th>
+         <th scope="col">
+      <a href="?order_by=statusId__status">Статус</a>
+    </th>
+        <th scope="col">Действия</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for order in orders %}
+        <tr>
+          <td>{{ order.clientsId.name }}</td>
+          <td>{{ order.amount_price }}</td>
+          <td>{{ order.date }}</td>
+          <td>{{ order.updateDate }}</td>
+          <td>{{ order.statusId.status }}</td>
+          <td>
+            <a href="{% url 'orders_detail' order.pk %}" class="btn btn-primary btn-sm">Подробнее</a>
+{#            <a href="{% url 'orders_update' order.pk %}" class="btn btn-warning btn-sm">Изменить</a>#}
+{#            <a href="{% url 'orders_delete' order.pk %}" class="btn btn-danger btn-sm">Удалить</a>#}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}

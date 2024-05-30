@@ -1,0 +1,18 @@
+<!-- templates/product_form.html -->
+
+{% extends 'main/base.html' %}
+
+{% block content %}
+  <h2>Добавить закупку</h2>
+  <form method="post">
+  {% csrf_token %}
+
+  <!-- Форма для создания заказа -->
+  {{ form.as_p }}
+
+
+
+  <button type="submit">Создать закупку</button>
+</form>
+<a href="{% url 'purchases_list' %}" class="btn btn-secondary mt-3">Назад к списку закупок</a>
+{% endblock %}

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <meta charset="UTF-8">
+    <title>Flowers Production</title>
+</head>
+<body>
+    {% include 'includes/navbar.html' %}
+
+    <!-- Остальной контент страницы -->
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+
+{% extends 'main/base.html' %}
+
+{% block content %}
+  <div class="container mt-3">
+    <h2>Статистика клиентов</h2>
+    <p>Общее количество клиентов: {{ total_clients }}</p>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">
+            <a href="?order_by=name&direction={{ order_directions.name }}">Клиент</a>
+          </th>
+          <th scope="col">
+            <a href="?order_by=num_sells&direction={{ order_directions.num_sells }}">Количество заказов</a>
+          </th>
+          <th scope="col">
+            <a href="?order_by=total_amount&direction={{ order_directions.total_amount }}">Общая сумма</a>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for client in clients %}
+          <tr>
+            <td>{{ client.name }}</td>
+            <td>{{ client.num_sells }}</td>
+            <td>{{ client.total_amount|default:"0.00" }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+   <a href="{% url 'stats_list' %}" class="btn btn-primary">Вернуться к статистике</a>
+  </div>
+{% endblock %}
